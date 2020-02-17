@@ -1,0 +1,85 @@
+@layout('layouts/master')
+@section('logopage')
+<link rel="icon" 
+      type="image/jpeg" 
+      href="../logo.jpeg">
+@endsection
+@section('image')
+<img src="../logo.jpeg">
+@endsection
+@section('css')
+    <link rel="stylesheet" href="../view-horchata.css">
+    <link rel="stylesheet" href="../global.custom.css">
+@endsection
+@section('content')    
+    <div class="container">
+        <div class="text-center mt-4">
+        </div>    
+        <div class="row mt-4">
+            <div class="col-md-5">
+                <div class="card rounded shadow">
+                <h5 class="card-header bg-warning">{{horchata.name}}</h5>
+                <div class="card-body">
+                    <p>
+                        <i class="material-icons">place</i>
+                        <span class="h4 ml-3"> {{ horchata.place }}</span>
+                    </p>
+                    <p>
+                        <i class="material-icons">perm_contact_calendar</i>
+                        <span class="h4 ml-3"> {{ horchata.date }}</span>
+                    </p>
+                    <a href="{{ route('horchata.index') }}" class="btn btn-warning">Regresar</a>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="card rounded shadow">
+                <div class="card-header bg-warning">
+                    <div class="float-left">
+                        <h5 class="mt-2">Charlas</h5>
+                    </div>
+                    <div class="float-right">
+                        <a href="{{ route('horchata.add-presentation',{id:horchata.id}) }}" class="btn btn-outline-dark "> <i class="material-icons">add</i> </a>
+                    </div>
+                </div>
+                @each(charla in charlas)
+                <div class="card-body">
+                    <div class="float-left">
+                        <ul class="list-group">
+                            <li class="list-group-item no-borders">
+                                <i class="material-icons">person</i>
+                                <span class="h5 ml-3">{{ charla.speaker }}</span>    
+                            </li>
+                            <li class="list-group-item no-borders">
+                                <i class="material-icons">access_time</i>
+                                <span class="h5 ml-3">{{ charla.hour }}</span>    
+                            </li>
+                            <li class="list-group-item no-borders">
+                                <i class="material-icons">lightbulb_outline</i>
+                                <span class="h5 ml-3">{{ charla.topic }}</span>    
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="float-right">
+                            <a type="button" data-toggle="tooltip" data-placement="top" title="editar" class="btn"> <i class="fas fa-pen"></i> </a>
+                            <a type="button" data-toggle="tooltip" data-placement="top" title="eliminar" data-toggle="modal" data-target="#exampleModal" class="btn"> <i class="fas fa-trash"></i> </a>
+                    </div>
+                </div>
+                @else
+                <div class="card-body">
+                    <span>
+                        <i class="far fa-frown h4"></i>
+                        <span class="h4 ml-3"> No hemos encontrado ninguna charla</span>
+                    </span>
+                </div>
+                
+                @endeach
+                </div>
+            </div>
+        </div>    
+    </div>
+    
+@endsection
+@section('scripts')
+    <script src="horchata.js"></script>
+@endsection

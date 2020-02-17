@@ -1,0 +1,54 @@
+@layout('layouts/master')
+@section('logopage')
+<link rel="icon" 
+      type="image/jpeg" 
+      href="../../../logo.jpeg">
+@endsection
+@section('image')
+<img src="../../../logo.jpeg">
+@endsection
+@section('css')
+    <link rel="stylesheet" href="../../../horchata.css">
+    <link rel="stylesheet" href="../../../global.custom.css">
+@endsection
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 shadow bg-white mt-5 rounded p-3">
+            <div class="float-left">
+                <i class="large material-icons">person</i>
+                <span class="h2 pl-4">Agregar Ponente</span>    
+            </div>
+            <div class="float-right">
+                <a href="{{ route('horchata.show',{id:horchata.id}) }}" class="btn btn-outline-dark ">Regresar</a>
+            </div>
+            <div class="clear-fix py-4"></div>
+                <form method="POST" action="{{route('presentation.store')}}">
+                    <input type="hidden" name="horchata_id" value="{{ horchata.id }}">
+                    {{ csrfField() }}
+                    <div class="form-group mt-3">
+                        <label for="example">Nombre del ponente</label>
+                        <input type="text" name="nameSpeaker" class="form-control" placeholder="Nombre">
+                        {{ elIf('<span>$self</span>', getErrorFor('nameSpeaker'), hasErrorFor('nameSpeaker')) }}
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="example">Inicio de la exponencia</label>
+                        <input type="text" name="hourSpeaker" class="form-control" placeholder="Hora">
+                        {{ elIf('<span>$self</span>', getErrorFor('hourSpeaker'), hasErrorFor('hourSpeaker')) }}
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="example">Tema a exponer</label>
+                        <input type="text" name="topic" class="form-control" placeholder="Tema">
+                        {{ elIf('<span>$self</span>', getErrorFor('topic'), hasErrorFor('topic')) }}
+                      </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+@endsection

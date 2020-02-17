@@ -1,0 +1,36 @@
+body{
+    background-color: #FFC600;
+}
+a{
+    color:black
+}
+a .isInthisPage:hover{
+    color: white;
+}
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+}
+#menu-toggle:checked + #menu {
+    display: block;
+}
+nav li > ul{
+    height: 0;
+    overflow: hidden;
+}
+
+nav li:hover > ul{
+    height: auto;
+}
+.dropdownRounded{
+    border-radius: 1rem;
+}
+
+.isInthisPage{
+    color:white;
+    background-color:  black;
+}
+.isOtherPage{
+    color:black
+}
+

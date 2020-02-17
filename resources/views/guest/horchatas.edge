@@ -1,0 +1,23 @@
+@layout('layouts/master')
+@section('logopage')
+<link rel="icon" 
+      type="image/jpeg" 
+      href="../logo.jpeg">
+@endsection
+@section('image')
+<img class="h-20 w-15" src="../logo.jpeg">
+@endsection
+@section('css')
+    <link rel="stylesheet" href="../horchata.css">
+    <link rel="stylesheet" href="../global.custom.css">
+@endsection
+@section('content')  
+<div class="px-4">
+    <div class="max-w-3xl bg-white rounded-lg mx-auto my-16 p-16">
+        <h1 class="text-2xl font-medium mb-2">Horchata JS</h1>
+    </div>
+</div>  
+@endsection
+@section('scripts')
+    <script src="horchata.js"></script>
+@endsection

@@ -1,0 +1,51 @@
+<header class="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
+    <div class="flex-1 flex justify-between items-center">
+        <a href="#">
+            @!section('image')
+        </a>
+        <label for="menu-toggle" class="cursor-pointer lg:hidden block">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" class="fill-current text-gray-900" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+        </label>
+    </div>
+    <input class="hidden" type="checkbox" id="menu-toggle">
+    @loggedIn
+        <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+            <nav>
+                <ul class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
+                    <li> 
+                        <a href="{{ route('horchata.index') }}" class="lg:p-4 py-3 font-bold px-0 block border-b-2 border-transparent hover:border-yellow-400">
+                            Horchatas
+                        </a>
+                    </li>
+                    <li>
+                        <a type="checkbox" id="dropdown-toggle" class="flex lg:p-4 py-3 font-bold px-0 block border-b-2 border-transparent hover:border-yellow-400 cursor-pointer block">
+                            <i class="material-icons">person</i>
+                            <h4 class="ml-3">{{ auth.user.username }}</h4>
+                        </a>
+                        <ul class="absolute bg-white rounded-lg shadow-md">
+                            <li class="block py-3 px-5 font-bold">
+                                <a href="">Mi perfil</a>
+                            </li>
+                            
+                            <li class="block py-3 px-5 py-auto font-bold">
+                                <a href="">Cerrar sesión</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    @else
+    <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+        <nav>
+            <ul class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
+                <li> 
+                    <a href="" class="lg:p-4 py-3 font-bold px-0 block border-b-2 border-transparent hover:border-yellow-400">
+                        Horchatas
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    @endloggedIn
+</header>

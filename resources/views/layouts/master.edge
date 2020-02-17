@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @!section('logopage')
+    <title>Horchata Session 2020</title>
+    {{ style('tailwind.min.css') }}
+    {{ style('global.custom.css') }}
+    {{ style('css/global/material-icons.css') }}
+    @!section('css')
+    {{ script('jquery-3.3.1.slim.min.js') }}
+    {{ script('popper.min.js')}}
+</head>
+<body>
+    <div class="w-full h-screen">
+        @include('navbar')
+        @!section('content')
+        </div>
+        {{ script('bootstrap.min.js') }}
+        @!section('scripts')
+    </div>
+</body>
+</html>

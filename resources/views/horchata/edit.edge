@@ -1,0 +1,70 @@
+ @layout('layouts/master')
+@section('logopage')
+<link rel="icon" 
+      type="image/jpeg" 
+      href="../../logo.jpeg">
+@endsection
+@section('image')
+<img src="../../logo.jpeg">
+@endsection
+@section('css')
+    <link rel="stylesheet" href="../../horchata.css">
+    <link rel="stylesheet" href="../../global.custom.css">
+@endsection
+@section('content')
+<div class="container">
+    <div class="text-center mt-4">
+        @if(flashMessage('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{flashMessage('success')}} 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @elseif(flashMessage('fail'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{flashMessage('fail')}} 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+    </div>    
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 shadow bg-white mt-5 rounded p-3">
+            <div class="float-left">
+                <h2 class="text-warning font-weight-bold text">Editar Horchata</h2>
+            </div>
+            <div class="float-right">
+                <a href="{{ route('horchata.index') }}" class="btn btn-outline-dark ">back</a>
+            </div>
+            <div class="clear-fix py-4"></div>
+                <form method="POST" action="/horchatas?_method=PUT">
+                    {{ csrfField() }}
+                    <input type="hidden" name="horchata_id" value="{{ horchata.id }}">
+                    <div class="form-group mt-3">
+                        <label for="example">Nombre de horchata</label>
+                        <input type="text" value="{{ horchata.name }}" name="nameHorchata" class="form-control" placeholder="Nombre">
+                        {{ elIf('<span>$self</span>', getErrorFor('nameHorchata'), hasErrorFor('nameHorchata')) }}
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="example">Fecha de evento</label>
+                        <input type="text" value="{{ horchata.date }}" name="date" class="form-control" placeholder="Fecha">
+                        {{ elIf('<span>$self</span>', getErrorFor('date'), hasErrorFor('date')) }}
+                      </div>
+                      <div class="form-group mt-3">
+                        <label for="example">Lugar de evento</label>
+                        <input type="text" name="place" value="{{ horchata.place }}" class="form-control" placeholder="Lugar">
+                        {{ elIf('<span>$self</span>', getErrorFor('place'), hasErrorFor('place')) }}
+                      </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Crear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+@endsection
