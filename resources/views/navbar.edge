@@ -1,4 +1,4 @@
-<header class="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
+<header class="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2 shadow-md">
     <div class="flex-1 flex justify-between items-center">
         <a href="#">
             @!section('image')
@@ -18,17 +18,18 @@
                         </a>
                     </li>
                     <li>
-                        <a type="checkbox" id="dropdown-toggle" class="flex lg:p-4 py-3 font-bold px-0 block border-b-2 border-transparent hover:border-yellow-400 cursor-pointer block">
-                            <i class="material-icons">person</i>
-                            <h4 class="ml-3">{{ auth.user.username }}</h4>
+                        <a type="checkbox" id="dropdown-toggle" class="flex lg:p-4 py-3 font-bold px-0 block border-b-2 border-transparent">
+                            @!section('image_profile')
                         </a>
                         <ul class="absolute bg-white rounded-lg shadow-md">
                             <li class="block py-3 px-5 font-bold">
                                 <a href="">Mi perfil</a>
-                            </li>
-                            
+                            </li>          
                             <li class="block py-3 px-5 py-auto font-bold">
-                                <a href="">Cerrar sesión</a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    {{ csrfField() }}
+                                    <button  type="submit" class="font-bold text-black">Cerrar sesión</button>
+                                </form>
                             </li>
                         </ul>
                     </li>
@@ -42,6 +43,11 @@
                 <li> 
                     <a href="" class="lg:p-4 py-3 font-bold px-0 block border-b-2 border-transparent hover:border-yellow-400">
                         Horchatas
+                    </a>
+                </li>
+                <li> 
+                    <a href="/login" class="lg:p-4 py-3 font-bold px-0 block border-b-2 border-transparent hover:border-yellow-400">
+                        Login
                     </a>
                 </li>
             </ul>

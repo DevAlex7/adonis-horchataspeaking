@@ -142,9 +142,9 @@ class HorchataController {
    */
   async store ({ request, response, session, auth }) {
     const data = request.only([
-          'nameHorchata',
-          'date',
-          'place'
+        'nameHorchata',
+        'date',
+        'place'
     ])
 
     const messages = {
@@ -174,7 +174,7 @@ class HorchataController {
     })
 
     session.flash({
-      'success' : '¡Horchata session has been added!'
+      'success-horchata' : '¡Horchata session has been added!'
     })
 
     return response.redirect('/horchatas')
@@ -192,6 +192,7 @@ class HorchataController {
    */
   async show ({ params, response, view, session }) {
       const getHorchata = await Horchata.find(params.id)
+      
       if(getHorchata){
         const charlas = await getHorchata.topics().fetch()
         return view.render('horchata.view-horchata',{
@@ -305,10 +306,10 @@ class HorchataController {
         await horchata.topics().delete()
 
         session.flash({
-          'success' : 'Your horchata event has been deleted!'
+          'delete-horchata' : 'Your horchata event has been deleted!'
         })
 
-        return response.redirect('back')
+        return response.redirect('/horchatas')
       } catch (error) {
         session.flash({
           'fail' : error

@@ -19,28 +19,20 @@ const Route = use('Route')
 
 Route.get('/','GuestController.showHorchatas').as('index')
 
-//auth
-Route.get('/register','AuthController.registrationView').as('register.create')
+
+//guest
+
+//auth admin
+
 Route.get('/login','AuthController.loginView').as('login.create')
+Route.get('/register','AuthController.registrationView').as('register.create')
 Route.post('/register-store','AuthController.PostRegister').as('register.store')
 Route.post('/login-store','AuthController.PostLogin').as('login.store')
-
 
 //Profile
 Route.group(()=>{
     Route.get('/me','AuthController.showProfile').as('profile.me')
 }).prefix('profile').middleware(['auth'])
-
-//quotes
-Route.group(() => {
-    Route.get('/create-quote','QuoteController.create').as('create.quote')
-    Route.post('/store-quote','QuoteController.store').as('store.quote')
-    Route.get('/edit-quote/:id','QuoteController.edit').as('edit.quote')
-    Route.post('/update-quote/:id','QuoteController.update').as('update.quote')
-    Route.get('/delete-quote/:id','QuoteController.destroy').as('delete.quote')
-    Route.post('/logout','AuthController.Logout').as('logout')
-}).middleware(['auth'])
-
 
 //horchata
 Route.group(()=>{
@@ -54,9 +46,9 @@ Route.group(()=>{
     Route.put('/','HorchataController.update').as('horchata.update')
     Route.delete('/','HorchataController.destroy').as('horchata.destroy')
     Route.post('/logout','AuthController.Logout').as('logout')
-}).prefix('horchatas').middleware('auth')
+}).prefix('horchatas').middleware(['auth'])
 
-//guest
+
 
 //users
 Route.group(()=>{

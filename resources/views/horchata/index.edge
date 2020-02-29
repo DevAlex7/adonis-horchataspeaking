@@ -1,4 +1,7 @@
 @layout('layouts/master')
+@section('image_profile')
+<img src="uploads/{{auth.user.photo}}" class="rounded-full w-12 h-12 border-2 border-transparent hover:border-yellow-500" alt="">
+@endsection
 @section('logopage')
 <link rel="icon" 
       type="image/jpeg" 
@@ -12,21 +15,42 @@
     <link rel="stylesheet" href="../global.custom.css">
 @endsection
 @section('content')
-<div class="ml-64 mr-10 mt-4 
-            sm:ml-12 
-            md:ml-12 
-            lg:ml-64 mr-10 mt-4 
-            xl:ml-64 mr-10 mt-4">
-    <h2 class="font-bold">Portico Real / Bodas</h2>
-    <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold mt-3 py-1 px-4 rounded inline-flex items-center" @click="openPDF">Descargar pdf</button>
+<div class="px-20 sm:px-20 md:px-20 lg:px-64 xl:px-64 mr-10 mt-4">
+    @if(flashMessage('success-horchata'))
+      <div class="bg-white shadow-md rounded px-8 py-3 sm:mx-20 bg-green-500 text-white text-center lg:mx-64 xl:mx-64">
+        <h1>{{ flashMessage('success-horchata') }}</h1>
+      </div>  
+    @elseif(flashMessage('delete-horchata'))
+      <div class="bg-white shadow-md rounded px-8 py-3 sm:mx-20 bg-red-500 text-white text-center lg:mx-64 xl:mx-64">
+        <h1>{{ flashMessage('delete-horchata') }}</h1>
+      </div>  
+    @else
+    @endif
+    <h2 class="font-bold">Horchatas</h2>
+    <a href="{{ route('horchata.new') }}" class="bg-yellow-500  text-white font-bold mt-3 py-1 px-4 rounded inline-flex items-center">Crear horchata</a>
+    <div class="flex flex-wrap -ml-2 mt-2">
+        @each(horchata in horchatas)
+        <div class="w-full sm:w-auto md:w-1/3 lg:w-1/3 px-2 my-2">
+            <div class="bg-white p-4 text-center shadow-xl rounded-lg hover:shadow-4xl">
+                <div class="max-w-sm rounded overflow-hidden">
+                    <div class="px-6 py-4">
+                      <div class="font-bold text-xl mb-2">
+                        <a href="{{ route('horchata.show',{ id: horchata.id }) }}">{{ horchata.name }}</a>
+                      </div>
+                    </div>
+                    <div class="px-6 py-4">
+                      @each(topic in horchata.topics)
+                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{{ topic.topic }}</span>
+                      @else
+                      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">No hay temas para este horchata</span>
+                      @endeach
+                    </div>
+                  </div>
+            </div>
+        </div>
+        @else
+          
+        @endeach
+    </div>
 </div>
-<div class="text-center 
-            sm:text-rigth
-            ">
-    Lorem ipsum dolor sit amet.
-  </div>
-
-@endsection
-@section('scripts')
-    <script src="horchata.js"></script>
 @endsection

@@ -48,9 +48,11 @@ class User extends Model {
   role(){
     return this.belongsTo('App/Models/Role')
   }
+  
   quote(){
     return this.hasMany('App/Models/Quote')
   }
+  
   //has Many Horchatas
   horchata(){
     return this.hasMany('App/Models/Horchata')

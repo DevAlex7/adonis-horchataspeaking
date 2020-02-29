@@ -1,0 +1,12 @@
+Buenas tardes comunidad!
+aqui les dejare los pasos para que el proyecto funcione perfectamente
+
+
+1.instalar adonis cli 
+
+2.Crear la base de datos mysql con el nombre que deseen ya que en el archivo
+.env estan las credenciales de la base de datos, o solo crear la base con el nombre "adonis"
+
+3.correr adonis migration:run
+
+4.correr adonis serve --dev
